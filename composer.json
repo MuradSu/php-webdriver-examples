@@ -1,0 +1,21 @@
+{
+    "name": "cbergau/php-webdriver-examples",
+    "description": "PHP-Webdriver Examples",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Bergau",
+            "email": "cbergau86@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "facebook/webdriver": "dev-master",
+        "phpunit/phpunit": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpWebDriverExamples\\": "tests/"
+        }
+    }
+}
