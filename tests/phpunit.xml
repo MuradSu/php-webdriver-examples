@@ -2,4 +2,7 @@
     <testsuite>
         <directory>./</directory>
     </testsuite>
+    <php>
+        <env name="HUB_URL" value="http://localhost:4444/wd/hub" />
+    </php>
 </phpunit>

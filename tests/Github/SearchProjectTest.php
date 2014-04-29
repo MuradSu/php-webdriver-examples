@@ -18,7 +18,7 @@ class SearchProjectTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->driver = RemoteWebDriver::create(
-            'http://localhost:4444/wd/hub',
+            getenv('HUB_URL'),
             array(
                 WebDriverCapabilityType::BROWSER_NAME => WebDriverBrowserType::CHROME,
             )
