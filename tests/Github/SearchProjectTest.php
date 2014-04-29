@@ -38,4 +38,12 @@ class SearchProjectTest extends PHPUnit_Framework_TestCase
         $searchInputPage->searchFor('facebook/php-webdriver');
         $searchInputPage->clickSearchResult('facebook/php-webdriver');
     }
+
+    public function testExplorePageDisplaysShowcasesLink()
+    {
+        $startPage = new StartPage($this->driver);
+        $startPage->open();
+        $explorePage = $startPage->clickExplore();
+        $this->assertTrue($explorePage->isShowCasesLinkVisible());
+    }
 }

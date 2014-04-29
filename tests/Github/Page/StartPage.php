@@ -19,4 +19,17 @@ class StartPage extends Page
     {
         return new SearchInputPage($this->driver);
     }
+
+    /**
+     * Click on the "Explore" link
+     *
+     * @return ExplorePage
+     */
+    public function clickExplore()
+    {
+        /** @var \WebDriverLocatable|\WebDriverElement $element */
+        $element = $this->driver->findElement(\WebDriverBy::xpath('//a[@href="/explore"]'));
+        $this->driver->getMouse()->click($element->getCoordinates());
+        return new ExplorePage($this->driver);
+    }
 }
