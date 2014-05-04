@@ -12,9 +12,9 @@ before_script:
     - "wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar"
     - "java -jar selenium-server-standalone-2.41.0.jar -role hub > /dev/null &"
     - sleep 5
-    - "java -jar selenium-server-standalone-2.41.0.jar -role node -hub http://localhost:4444/grid/register -browser browserName=chrome,maxInstances=15,platform=LINUX -port 6667 -Dwebdriver.chrome.driver=/usr/bin/chromedriver > /dev/null &"
+    - "java -jar selenium-server-standalone-2.41.0.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=15,platform=LINUX -port 6667 > /dev/null &"
     - sleep 5
 
 script:
-    - export BROWSER=chrome
+    - export BROWSER=firefox
     - bin/execute_tests_paratest.sh

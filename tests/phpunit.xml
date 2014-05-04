@@ -4,6 +4,6 @@
     </testsuite>
     <php>
         <env name="HUB_URL" value="http://localhost:4444/wd/hub" />
-        <env name="BROWSER" value="chrome" />
+        <env name="BROWSER" value="firefox" />
     </php>
 </phpunit>

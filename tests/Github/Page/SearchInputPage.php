@@ -14,7 +14,6 @@ class SearchInputPage extends Page
     public function searchFor($repositoryName)
     {
         $element = $this->driver->findElement(\WebDriverBy::id('js-command-bar-field'));
-        $this->driver->getMouse()->mouseMove($element->getCoordinates());
         $this->driver->getMouse()->click($element->getCoordinates());
         $this->driver->getKeyboard()->sendKeys($repositoryName);
     }
@@ -44,7 +43,6 @@ class SearchInputPage extends Page
             }
         });
 
-        $this->driver->getMouse()->mouseMove($element->getCoordinates());
         $this->driver->getMouse()->click($element->getCoordinates());
     }
 }
