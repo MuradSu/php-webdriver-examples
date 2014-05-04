@@ -6,6 +6,7 @@ before_script:
     - composer self-update
     - composer install --dev --prefer-dist
     - chmod +x bin/execute_tests_paratest.sh
+    - "wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip && unzip chromedriver_linux32.zip && sudo mv chromedriver /usr/bin"
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
     - "wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar"
@@ -13,5 +14,5 @@ before_script:
     - sleep 5
 
 script:
-    - export BROWSER=firefox
+    - export BROWSER=chrome
     - bin/execute_tests_paratest.sh
