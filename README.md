@@ -7,3 +7,4 @@ Useful links to this project
 ============================
 
 Page Object Pattern: https://code.google.com/p/selenium/wiki/PageObjects
+Selenium: http://docs.seleniumhq.org/download/
