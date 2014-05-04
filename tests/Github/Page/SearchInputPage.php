@@ -39,9 +39,13 @@ class SearchInputPage extends Page
                 $element = $this->driver->findElement(\WebDriverBy::xpath('//*[@data-command="'.$repositoryName.'"]'));
                 return true;
             } catch (Exception $exception) {
-
+                return false;
             }
         });
+
+        // Workaround for Firefox
+        $wait = new \WebDriverWait($this->driver, 5, 100);
+        $wait->until(\WebDriverExpectedCondition::visibilityOf($element));
 
         $this->driver->getMouse()->click($element->getCoordinates());
     }
