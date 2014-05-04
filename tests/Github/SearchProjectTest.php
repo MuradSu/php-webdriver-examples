@@ -36,7 +36,8 @@ class SearchProjectTest extends PHPUnit_Framework_TestCase
         $startPage->open();
         $searchInputPage = $startPage->getSearchInputPage();
         $searchInputPage->searchFor('facebook/php-webdriver');
-        $searchInputPage->clickSearchResult('facebook/php-webdriver');
+        $repositoryPage = $searchInputPage->clickSearchResult('facebook/php-webdriver');
+        $this->assertEquals('facebook', $repositoryPage->getAuthor());
     }
 
     public function testExplorePageDisplaysShowcasesLink()

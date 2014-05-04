@@ -29,25 +29,34 @@ class SearchInputPage extends Page
      * {code}
      *
      * @param string $repositoryName
+     *
+     * @return \PhpWebDriverExamples\Github\Page\RepositoryPage
      */
     public function clickSearchResult($repositoryName)
     {
         $element = null;
-        $wait = new \WebDriverWait($this->driver, 5, 100);
-        $wait->until(function() use ($repositoryName, &$element) {
-            try {
-                $element = $this->driver->findElement(\WebDriverBy::xpath('//*[@data-command="'.$repositoryName.'"]'));
-                return true;
-            } catch (Exception $exception) {
-                return false;
+        $wait    = new \WebDriverWait($this->driver, 5, 100);
+        $wait->until(
+            function () use ($repositoryName, &$element) {
+                try {
+                    $element = $this->driver->findElement(
+                        \WebDriverBy::xpath('//*[@data-command="' . $repositoryName . '"]')
+                    );
+                    return true;
+                } catch (Exception $exception) {
+                    return false;
+                }
             }
-        });
+        );
 
         // Workaround for Firefox
         $wait = new \WebDriverWait($this->driver, 5, 100);
         $wait->until(\WebDriverExpectedCondition::visibilityOf($element));
 
         $this->driver->getMouse()->click($element->getCoordinates());
+
+        $repositoryPage = new RepositoryPage($this->driver);
+        $repositoryPage->waitFor($repositoryName);
+        return $repositoryPage;
     }
 }
- 
