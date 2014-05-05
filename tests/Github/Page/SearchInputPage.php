@@ -50,7 +50,7 @@ class SearchInputPage extends Page
         );
 
         // Workaround for Firefox
-        $wait = new \WebDriverWait($this->driver, 5, 100);
+        $wait = new \WebDriverWait($this->driver, 10, 100);
         $wait->until(\WebDriverExpectedCondition::visibilityOf($element));
 
         $this->driver->getMouse()->click($element->getCoordinates());
