@@ -3,7 +3,7 @@ php-webdriver-examples
 
 [![Build Status](https://travis-ci.org/cbergau/php-webdriver-examples.svg?branch=master)](https://travis-ci.org/cbergau/php-webdriver-examples)
 
-Example Implementations for php-webdriver
+Example Implementations for php-webdriver.
 
 Useful links to this project
 ============================
