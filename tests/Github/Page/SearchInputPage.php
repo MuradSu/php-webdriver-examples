@@ -2,61 +2,29 @@
 
 namespace PhpWebDriverExamples\Github\Page;
 
-use Exception;
-
 class SearchInputPage extends Page
 {
     /**
      * Search for a Repository by typing into the search input
      *
+     * @param string $searchQuery
      * @param string $repositoryName
+     *
+     * @return RepositoryPage
      */
-    public function searchFor($repositoryName)
+    public function searchFor($searchQuery, $repositoryName)
     {
-        $element = $this->driver->findElement(\WebDriverBy::id('js-command-bar-field'));
+        $element = $this->driver->findElement(\WebDriverBy::name('q'));
         $this->driver->getMouse()->click($element->getCoordinates());
-        $this->driver->getKeyboard()->sendKeys($repositoryName);
-    }
+        $this->driver->getKeyboard()->sendKeys($searchQuery);
+        $this->driver->getKeyboard()->sendKeys(\WebDriverKeys::ENTER);
 
-    /**
-     * Click on the search result. You need to call "searchFor" and search for a repository in order to click a
-     * search result.
-     *
-     * {code}
-     * $page = new SearchInputPage($this->driver);
-     * $page->searchFor('facebook/webdriver');
-     * $page->clickSearchResult('facebook/webdriver');
-     * {code}
-     *
-     * @param string $repositoryName
-     *
-     * @return \PhpWebDriverExamples\Github\Page\RepositoryPage
-     */
-    public function clickSearchResult($repositoryName)
-    {
-        $element = null;
-        $wait    = new \WebDriverWait($this->driver, 5, 100);
-        $wait->until(
-            function () use ($repositoryName, &$element) {
-                try {
-                    $element = $this->driver->findElement(
-                        \WebDriverBy::xpath('//*[@data-command="' . $repositoryName . '"]')
-                    );
-                    return true;
-                } catch (Exception $exception) {
-                    return false;
-                }
-            }
-        );
-
-        // Workaround for Firefox
-        $wait = new \WebDriverWait($this->driver, 10, 100);
-        $wait->until(\WebDriverExpectedCondition::visibilityOf($element));
-
+        $element = $this->driver->findElement(\WebDriverBy::xpath('//a[@href="/'.$repositoryName.'"]'));
         $this->driver->getMouse()->click($element->getCoordinates());
 
         $repositoryPage = new RepositoryPage($this->driver);
         $repositoryPage->waitFor($repositoryName);
+
         return $repositoryPage;
     }
 }

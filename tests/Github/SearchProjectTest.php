@@ -35,8 +35,7 @@ class SearchProjectTest extends PHPUnit_Framework_TestCase
         $startPage = new StartPage($this->driver);
         $startPage->open();
         $searchInputPage = $startPage->getSearchInputPage();
-        $searchInputPage->searchFor('facebook/php-webdriver');
-        $repositoryPage = $searchInputPage->clickSearchResult('facebook/php-webdriver');
+        $repositoryPage = $searchInputPage->searchFor('php-webdriver', 'facebook/php-webdriver');
         $this->assertEquals('facebook', $repositoryPage->getAuthor());
     }
 
